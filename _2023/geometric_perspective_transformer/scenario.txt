@@ -1,0 +1,19 @@
+Title: "Unleashing the AI Transformer: A Geometric Journey"
+
+[Background music fades in]
+
+[Scene 1: Captivating Aerial View]
+[A breathtaking aerial shot of a cityscape or a lush landscape is displayed on the screen, showcasing a dynamic and futuristic
+atmosphere.]
+
+Narrator: In a world where imagination and technology converge, a groundbreaking innovation awaits. Welcome to a captivating
+journey through the realm of the AI Transformer, where we'll investigate the geometric patterns behind the AI Transformer's
+design.
+
+[Scene 2: Montage of Geometric Patterns]
+[Animation with Transformers working in the background.]
+
+Narrator: I'm pretty sure everyone heard of Transformers models in a way or another. A really popular example is ChatGPT from
+OpenAI, which given a prompt of text, can generate a response that is coherent and relevant to the prompt. Of course,
+Transformers can be used for a lot more than just understanding text, but today we'll be using text as an example to illustrate
+the logic behind Transformers.   
