@@ -1,12 +1,12 @@
 from typing import Optional
 
 import numpy as np
-from manim import VGroup, Line, Transform
+from manim import Line, Transform, VMobject
 
 from colors.color import colors_hex
 
 
-class SoundWave(VGroup):
+class SoundWave(VMobject):
     def __init__(self, width: float, height: float, density: int = 10, seed: Optional[int] = None):
         super().__init__()
         self.width = width

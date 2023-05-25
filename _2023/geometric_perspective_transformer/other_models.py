@@ -1,5 +1,5 @@
 import numpy as np
-from manim import Write, ImageMobject
+from manim import Write, ImageMobject, VGroup, VMobject, Text, Transform
 
 from colors.color import ColorSchemeScene
 from manim_objects.animations import fade_in_animation
@@ -15,10 +15,6 @@ class OtherModelsScene(ColorSchemeScene):
         self.image_model = None
         self.sound_model = None
         self.graph_model = None
-
-        self.image = None
-        self.sound_wave = None
-        self.graph = None
 
     def show_models(self):
         graph_model = TextBox("Graph", width=2.0, height=1.0)
@@ -50,31 +46,51 @@ class OtherModelsScene(ColorSchemeScene):
         sound_wave_animation = Write(sound_wave)
 
         # Add Graph
-        graph = RandomGraph(num_nodes=12, connectivity_rate=0.3, seed=0, width=1, height=1)
+        graph = RandomGraph(num_nodes=12, connectivity_rate=0.3, seed=0, width=1.0, height=1.0)
         graph.move_to(self.graph_model.get_center() + [0.0, -2.0, 0.0])
 
         graph_animation = Write(graph)
 
         self.play(image_animation, sound_wave_animation, graph_animation, run_time=4.0)
 
-        self.wait(2.0)
-
         # Animate the image moving to the center of chat gpt rectangle
-        # image_animation = image.animate
-        # image_animation.move_to(self.image_model.get_center())
-        # image_animation.set_opacity(0.0)
-        # self.play(image_animation, run_time=2.0)
+        def send_input_to_model_animation(obj: VMobject, model: VMobject):
+            object_animation = obj.animate
+            object_animation.move_to(model.get_center())
+            object_animation.set_opacity(0.0)
+            return object_animation
+
+        image_animation = send_input_to_model_animation(image, self.image_model)
+
+        sound_wave_target = SoundWave(width=2.0, height=1.0, density=40, seed=3)
+        sound_wave_target.move_to(self.sound_model.get_center())
+        sound_wave_target.set_opacity(0.0)
+        sound_wave_animation = Transform(sound_wave, sound_wave_target)
+
+        graph_animation = send_input_to_model_animation(graph, self.graph_model)
+
+        self.play(image_animation, sound_wave_animation, graph_animation, run_time=2.0)
+
+    def send_outputs(self):
+        texts = ["Shortest Route: 52km", "Cat", "You shalt not pass!"]
+
+        def create_output_animation(text: str, model: VMobject):
+            answer_text = Text(text, font_size=18)
+            answer_text.move_to(model.get_center())
+            answer_text.set_opacity(0.0)
+
+            answer_animation = answer_text.animate
+            answer_animation.move_to(model.get_center() + [0.0, 2.0, 0.0])
+            answer_animation.set_opacity(1.0)
+            return answer_animation
+
+        image_animation = create_output_animation(texts[0], self.graph_model)
+        sound_wave_animation = create_output_animation(texts[1], self.image_model)
+        graph_animation = create_output_animation(texts[2], self.sound_model)
+
+        self.play(image_animation, sound_wave_animation, graph_animation, run_time=2.0)
 
     def construct(self):
         self.show_models()
         self.send_inputs()
-
-        # # Animate answer
-        # answer_text = Text("Cat", font_size=18)
-        # answer_text.move_to(self.image_model.get_center())
-        # answer_text.set_opacity(0.0)
-        #
-        # answer_animation = answer_text.animate
-        # answer_animation.move_to(self.image_model.get_center() + [0.0, 2.0, 0.0])
-        # answer_animation.set_opacity(1.0)
-        # self.play(answer_animation, run_time=2.0)
+        self.send_outputs()
