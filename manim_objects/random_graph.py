@@ -3,8 +3,15 @@ from manim import Graph, VMobject
 
 
 class RandomGraph(VMobject):
-    def __init__(self, num_nodes, connectivity_rate: float = 0.5, width: float = 1.0, height: float = 1.0, seed: int = 0):
-        super().__init__()
+    def __init__(
+            self,
+            num_nodes,
+            connectivity_rate: float = 0.5,
+            width: float = 1.0,
+            height: float = 1.0,
+            seed: int = 0, **kwargs
+    ):
+        super().__init__(**kwargs)
 
         vertices = [i for i in range(num_nodes)]
 

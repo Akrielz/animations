@@ -7,8 +7,15 @@ from colors.color import colors_hex
 
 
 class SoundWave(VMobject):
-    def __init__(self, width: float, height: float, density: int = 10, seed: Optional[int] = None):
-        super().__init__()
+    def __init__(
+            self,
+            width: float,
+            height: float,
+            density: int = 10,
+            seed: Optional[int] = None,
+            **kwargs
+    ):
+        super().__init__(**kwargs)
         self.width = width
         self.height = height
         self.density = density

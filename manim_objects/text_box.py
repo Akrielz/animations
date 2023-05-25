@@ -1,12 +1,19 @@
 from typing import Optional
-from manim import Text, Rectangle, VGroup
+from manim import Text, Rectangle, VMobject
 
 from colors.color import colors_hex
 
 
-class TextBox(VGroup):
-    def __init__(self, text: str, width: float, height: float, font_size: Optional[int] = None):
-        super().__init__()
+class TextBox(VMobject):
+    def __init__(
+            self,
+            text: str,
+            width: float,
+            height: float,
+            font_size: Optional[int] = None,
+            **kwargs
+    ):
+        super().__init__(**kwargs)
 
         self.rectangle = Rectangle(width=width, height=height)
         self.rectangle.set_fill(colors_hex['light_gray'], opacity=1.0)
