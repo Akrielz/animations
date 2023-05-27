@@ -65,8 +65,8 @@ class EmbeddingScheme(VMobject):
 
         # Add all the objects to the VMobject
         self.add(
-            self.input_embedding_box,
             self.input_arrow,
+            self.input_embedding_box,
             self.output_arrow,
             self.addition_circle,
             self.positional_circle,

@@ -17,5 +17,5 @@ class FastExperiment(ColorSchemeScene):
         # Make the circle twice as big
         obj.scale(0.5)
 
-        self.play(Write(obj), run_time=0.01)
+        self.play(Create(obj), run_time=15.0)
         self.wait(5.0)
